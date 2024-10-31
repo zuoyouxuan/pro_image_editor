@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.1.0
+- **FEAT**(Layer): Introduce the `enableInteraction` configuration in the `Layer` class to toggle interaction capabilities.
+- **FEAT**(CustomWidgets): Add `bodyItemsRecorded` to all editors which can direct generate the final image. This option enables the recording of custom body widgets, enhancing frame functionality.
+- **DOC**(Frame): Add an example how users can add a frame.
+
 ## 6.0.2
 - **FIX**(Recorder): Resolve issue where the editor would incorrectly capture drawing boundaries if the user set `captureOnlyDrawingBounds` to `true`. This resolves issue [#249](https://github.com/hm21/pro_image_editor/issues/249)
 

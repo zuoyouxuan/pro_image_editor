@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:example/pages/crop_to_main_editor.dart';
 import 'package:example/pages/design_examples/design_example.dart';
+import 'package:example/pages/frame_example.dart';
 import 'package:example/pages/zoom_move_editor_example.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -89,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const CustomAppbarBottombarExample(),
     const ImportExportExample(),
     const MovableBackgroundImageExample(),
+    const FrameExample(),
     const ZoomMoveEditorExample(),
     const ImageFormatConvertExample(),
   ];

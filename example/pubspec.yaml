@@ -42,4 +42,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/demo.png
+    - assets/frame.png
+    - assets/frame1.png
     - assets/google_fonts/
