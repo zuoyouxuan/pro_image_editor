@@ -53,6 +53,7 @@ class LayerCopyManager {
       flipX: layer.flipX,
       flipY: layer.flipY,
       customSecondaryColor: layer.customSecondaryColor,
+      enableInteraction: layer.enableInteraction,
     );
   }
 
@@ -66,6 +67,7 @@ class LayerCopyManager {
       scale: layer.scale,
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
     );
   }
 
@@ -79,6 +81,7 @@ class LayerCopyManager {
       scale: layer.scale,
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
     );
   }
 
@@ -94,6 +97,7 @@ class LayerCopyManager {
       item: layer.item.copy(),
       rawSize: layer.rawSize,
       opacity: layer.opacity,
+      enableInteraction: layer.enableInteraction,
     );
   }
 }

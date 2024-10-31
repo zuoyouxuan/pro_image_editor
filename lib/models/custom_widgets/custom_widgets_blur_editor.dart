@@ -28,6 +28,7 @@ class CustomWidgetsBlurEditor
     super.appBar,
     super.bottomBar,
     super.bodyItems,
+    super.bodyItemsRecorded,
     this.slider,
   });
 
@@ -47,15 +48,15 @@ class CustomWidgetsBlurEditor
     ReactiveCustomWidget? Function(
             BlurEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            BlurEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<BlurEditorState>? bodyItems,
+    CustomBodyItems<BlurEditorState>? bodyItemsRecorded,
     CustomSlider<BlurEditorState>? slider,
   }) {
     return CustomWidgetsBlurEditor(
       appBar: appBar ?? this.appBar,
       bottomBar: bottomBar ?? this.bottomBar,
       bodyItems: bodyItems ?? this.bodyItems,
+      bodyItemsRecorded: bodyItemsRecorded ?? this.bodyItemsRecorded,
       slider: slider ?? this.slider,
     );
   }

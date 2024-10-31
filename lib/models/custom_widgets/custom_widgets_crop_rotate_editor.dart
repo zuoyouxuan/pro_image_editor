@@ -53,9 +53,7 @@ class CustomWidgetsCropRotateEditor
     ReactiveCustomWidget? Function(
             CropRotateEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            CropRotateEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<CropRotateEditorState>? bodyItems,
     CropEditorAspectRatioOptions<CropRotateEditorState>? aspectRatioOptions,
   }) {
     return CustomWidgetsCropRotateEditor(

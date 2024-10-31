@@ -1702,13 +1702,20 @@ class ProImageEditorState extends State<ProImageEditor>
 
     if (!mounted) return Uint8List.fromList([]);
 
+    bool hasChanges = stateManager.position > 0;
+    bool useOriginalImage =
+        !hasChanges && imageGenerationConfigs.enableUseOriginalBytes;
+    if (!hasChanges && !imageGenerationConfigs.enableUseOriginalBytes) {
+      addHistory();
+    }
+
     return await _controllers.screenshot.captureFinalScreenshot(
           imageInfos: _imageInfos!,
           backgroundScreenshot:
-              stateManager.position > 0 ? stateManager.activeScreenshot : null,
-          originalImageBytes: stateManager.position > 0
-              ? null
-              : await editorImage.safeByteArray(context),
+              useOriginalImage ? null : stateManager.activeScreenshot,
+          originalImageBytes: useOriginalImage
+              ? await editorImage.safeByteArray(context)
+              : null,
         ) ??
         Uint8List.fromList([]);
   }
@@ -2149,13 +2156,16 @@ class ProImageEditorState extends State<ProImageEditor>
 
                     /// Build layer stack
                     _buildLayers(),
+
+                    if (customWidgets.mainEditor.bodyItemsRecorded != null)
+                      ...customWidgets.mainEditor.bodyItemsRecorded!(
+                          this, _rebuildController.stream),
                   ],
                 ),
               ),
             ),
           ),
-          if (widget
-              .configs.imageGenerationConfigs.captureOnlyBackgroundImageArea)
+          if (imageGenerationConfigs.captureOnlyBackgroundImageArea)
             Hero(
               tag: 'crop_layer_painter_hero',
               child: CustomPaint(

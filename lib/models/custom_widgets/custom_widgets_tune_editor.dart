@@ -21,6 +21,7 @@ class CustomWidgetsTuneEditor
     super.appBar,
     super.bottomBar,
     super.bodyItems,
+    super.bodyItemsRecorded,
     this.slider,
   });
 
@@ -52,15 +53,14 @@ class CustomWidgetsTuneEditor
     ReactiveCustomWidget? Function(
             TuneEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            TuneEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<TuneEditorState>? bodyItems,
+    CustomBodyItems<TuneEditorState>? bodyItemsRecorded,
     CustomSlider<TuneEditorState>? slider,
   }) {
     return CustomWidgetsTuneEditor(
       appBar: appBar ?? this.appBar,
       bottomBar: bottomBar ?? this.bottomBar,
-      bodyItems: bodyItems ?? this.bodyItems,
+      bodyItemsRecorded: bodyItemsRecorded ?? this.bodyItemsRecorded,
       slider: slider ?? this.slider,
     );
   }

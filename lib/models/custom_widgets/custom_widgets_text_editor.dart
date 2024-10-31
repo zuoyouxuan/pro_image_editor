@@ -75,9 +75,7 @@ class CustomWidgetsTextEditor
     ReactiveCustomWidget? Function(
             TextEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            TextEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<TextEditorState>? bodyItems,
     CustomColorPicker<TextEditorState>? colorPicker,
     CustomSlider<TextEditorState>? sliderFontSize,
     Widget Function(TextEditorState editorState, Function() tap)?

@@ -296,54 +296,66 @@ class FilterEditorState extends State<FilterEditor>
   Widget _buildBody() {
     return LayoutBuilder(builder: (context, constraints) {
       editorBodySize = constraints.biggest;
-      return ContentRecorder(
-        controller: screenshotCtrl,
-        child: Stack(
-          alignment: Alignment.center,
-          fit: StackFit.expand,
-          children: [
-            Hero(
-              tag: heroTag,
-              createRectTween: (begin, end) =>
-                  RectTween(begin: begin, end: end),
-              child: TransformedContentGenerator(
-                configs: configs,
-                transformConfigs:
-                    initialTransformConfigs ?? TransformConfigs.empty(),
-                child: StreamBuilder(
-                    stream: _uiFilterStream.stream,
-                    builder: (context, snapshot) {
-                      return FilteredImage(
-                        width:
-                            getMinimumSize(mainImageSize, editorBodySize).width,
-                        height: getMinimumSize(mainImageSize, editorBodySize)
-                            .height,
-                        configs: configs,
-                        image: editorImage,
-                        filters: _getActiveFilters(),
-                        tuneAdjustments: appliedTuneAdjustments,
-                        blurFactor: appliedBlurFactor,
-                      );
-                    }),
-              ),
-            ),
-            if (filterEditorConfigs.showLayers && layers != null)
-              LayerStack(
-                transformHelper: TransformHelper(
-                  mainBodySize: getMinimumSize(mainBodySize, editorBodySize),
-                  mainImageSize: getMinimumSize(mainImageSize, editorBodySize),
-                  editorBodySize: editorBodySize,
-                  transformConfigs: initialTransformConfigs,
+      return Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand,
+        children: [
+          ContentRecorder(
+            controller: screenshotCtrl,
+            child: Stack(
+              alignment: Alignment.center,
+              fit: StackFit.expand,
+              children: [
+                Hero(
+                  tag: heroTag,
+                  createRectTween: (begin, end) =>
+                      RectTween(begin: begin, end: end),
+                  child: TransformedContentGenerator(
+                    configs: configs,
+                    transformConfigs:
+                        initialTransformConfigs ?? TransformConfigs.empty(),
+                    child: StreamBuilder(
+                        stream: _uiFilterStream.stream,
+                        builder: (context, snapshot) {
+                          return FilteredImage(
+                            width: getMinimumSize(mainImageSize, editorBodySize)
+                                .width,
+                            height:
+                                getMinimumSize(mainImageSize, editorBodySize)
+                                    .height,
+                            configs: configs,
+                            image: editorImage,
+                            filters: _getActiveFilters(),
+                            tuneAdjustments: appliedTuneAdjustments,
+                            blurFactor: appliedBlurFactor,
+                          );
+                        }),
+                  ),
                 ),
-                configs: configs,
-                layers: layers!,
-                clipBehavior: Clip.none,
-              ),
-            if (customWidgets.filterEditor.bodyItems != null)
-              ...customWidgets.filterEditor.bodyItems!(
-                  this, rebuildController.stream),
-          ],
-        ),
+                if (filterEditorConfigs.showLayers && layers != null)
+                  LayerStack(
+                    transformHelper: TransformHelper(
+                      mainBodySize:
+                          getMinimumSize(mainBodySize, editorBodySize),
+                      mainImageSize:
+                          getMinimumSize(mainImageSize, editorBodySize),
+                      editorBodySize: editorBodySize,
+                      transformConfigs: initialTransformConfigs,
+                    ),
+                    configs: configs,
+                    layers: layers!,
+                    clipBehavior: Clip.none,
+                  ),
+                if (customWidgets.filterEditor.bodyItemsRecorded != null)
+                  ...customWidgets.filterEditor.bodyItemsRecorded!(
+                      this, rebuildController.stream),
+              ],
+            ),
+          ),
+          if (customWidgets.filterEditor.bodyItems != null)
+            ...customWidgets.filterEditor.bodyItems!(
+                this, rebuildController.stream),
+        ],
       );
     });
   }

@@ -22,6 +22,7 @@ class CustomWidgetsFilterEditor
     super.appBar,
     super.bottomBar,
     super.bodyItems,
+    super.bodyItemsRecorded,
     this.slider,
     this.filterButton,
   });
@@ -64,9 +65,8 @@ class CustomWidgetsFilterEditor
     ReactiveCustomWidget? Function(
             FilterEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            FilterEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<FilterEditorState>? bodyItems,
+    CustomBodyItems<FilterEditorState>? bodyItemsRecorded,
     CustomSlider<FilterEditorState>? slider,
     Widget Function(
       FilterModel filter,
@@ -81,6 +81,7 @@ class CustomWidgetsFilterEditor
       appBar: appBar ?? this.appBar,
       bottomBar: bottomBar ?? this.bottomBar,
       bodyItems: bodyItems ?? this.bodyItems,
+      bodyItemsRecorded: bodyItemsRecorded ?? this.bodyItemsRecorded,
       slider: slider ?? this.slider,
       filterButton: filterButton ?? this.filterButton,
     );

@@ -151,3 +151,72 @@ typedef LayerInteractionScaleRotateButton = ReactiveCustomWidget? Function(
   Function(bool) toggleTooltipVisibility,
   double rotation,
 );
+
+/// {@template customBodyItem}
+/// Add custom widgets at a specific position inside the body, which will not
+/// be recorded in the final image. This is useful for interaction buttons or
+/// dynamic overlays that should not appear in the exported image.
+///
+/// **Example:**
+/// ```dart
+/// bodyItems: (editor, rebuildStream) => [
+///   ReactiveCustomWidget(
+///     stream: rebuildStream,
+///     builder: (_) => Container(
+///       width: 100,
+///       height: 100,
+///       color: Colors.blue,
+///     ),
+///   ),
+/// ],
+/// ```
+/// {@endtemplate}
+
+/// {@template customBodyItemRecorded}
+/// Add custom widgets that will be recorded in the final image generation,
+/// making it ideal for frames or other static decorations that should appear
+/// in the exported image.
+///
+/// **Example:**
+/// ```dart
+/// bodyItemsRecorded: (editor, rebuildStream) => [
+///   ReactiveCustomWidget(
+///     stream: rebuildStream,
+///     builder: (_) => Container(
+///       width: 300,
+///       height: 300,
+///       decoration: BoxDecoration(
+///         border: Border.all(color: Colors.black, width: 4),
+///       ),
+///     ),
+///   ),
+/// ],
+/// ```
+/// {@endtemplate}
+
+/// A function that returns a list of [ReactiveCustomWidget]s, allowing
+/// customization of body items based on the [editor] state and a
+/// [rebuildStream] to trigger updates.
+///
+/// The [editor] parameter provides access to the current editor state,
+/// enabling customization based on the editor's properties. The
+/// [rebuildStream] stream allows dynamic updates to the widgets.
+///
+/// **Example Usage:**
+/// ```dart
+/// CustomBodyItems<ProImageEditorState> customItems = (editor, rebuildStream)
+/// => [
+///   ReactiveCustomWidget(
+///     stream: rebuildStream,
+///     builder: (_) => Container(
+///       width: 100,
+///       height: 100,
+///       color: Colors.red,
+///     ),
+///   ),
+/// ];
+/// ```
+typedef CustomBodyItems<T> = List<ReactiveCustomWidget> Function(
+  T editor,
+  Stream<void> rebuildStream,
+);

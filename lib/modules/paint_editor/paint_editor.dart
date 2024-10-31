@@ -1033,6 +1033,10 @@ class PaintingEditorState extends State<PaintingEditor>
                                   ),
                                 ),
                               _buildPainter(),
+                              if (customWidgets.paintEditor.bodyItemsRecorded !=
+                                  null)
+                                ...customWidgets.paintEditor.bodyItemsRecorded!(
+                                    this, rebuildController.stream),
                             ],
                           ),
                         ),

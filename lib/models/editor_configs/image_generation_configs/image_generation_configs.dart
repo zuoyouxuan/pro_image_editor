@@ -32,6 +32,7 @@ class ImageGenerationConfigs {
   const ImageGenerationConfigs({
     this.captureOnlyBackgroundImageArea = true,
     this.allowEmptyEditCompletion = true,
+    this.enableUseOriginalBytes = true,
     this.generateInsideSeparateThread = true,
     this.generateImageInBackground = !kIsWeb || !kDebugMode,
     this.captureOnlyDrawingBounds = true,
@@ -113,6 +114,16 @@ class ImageGenerationConfigs {
   /// <img src="https://github.com/hm21/pro_image_editor/blob/stable/assets/schema_callbacks.jpeg?raw=true" alt="Schema" height="500px" />
   final bool allowEmptyEditCompletion;
 
+  /// When disabled, this flag allows the editor to re-record the original
+  /// image even if there are no changes made. This is useful when
+  /// the editor use `bodyItemsRecorded` inside `customWidgets`.
+  ///
+  /// If `true`, the editor will skip re-recording when no changes are
+  /// detected, optimizing performance.
+  ///
+  /// **Default**: `true`
+  final bool enableUseOriginalBytes;
+
   /// The pixel ratio of the image relative to the content.
   ///
   /// Normally, you do not need to set any value here as the editor detects the
@@ -178,6 +189,7 @@ class ImageGenerationConfigs {
   ImageGenerationConfigs copyWith({
     bool? captureOnlyBackgroundImageArea,
     bool? allowEmptyEditCompletion,
+    bool? enableUseOriginalBytes,
     bool? generateInsideSeparateThread,
     bool? generateImageInBackground,
     bool? captureOnlyDrawingBounds,
@@ -198,6 +210,8 @@ class ImageGenerationConfigs {
           captureOnlyBackgroundImageArea ?? this.captureOnlyBackgroundImageArea,
       allowEmptyEditCompletion:
           allowEmptyEditCompletion ?? this.allowEmptyEditCompletion,
+      enableUseOriginalBytes:
+          enableUseOriginalBytes ?? this.enableUseOriginalBytes,
       generateInsideSeparateThread:
           generateInsideSeparateThread ?? this.generateInsideSeparateThread,
       generateImageInBackground:

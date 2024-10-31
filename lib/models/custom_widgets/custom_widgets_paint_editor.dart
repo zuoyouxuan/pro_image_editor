@@ -22,6 +22,7 @@ class CustomWidgetsPaintEditor
     super.appBar,
     super.bottomBar,
     super.bodyItems,
+    super.bodyItemsRecorded,
     this.lineWidthCloseButton,
     this.changeOpacityCloseButton,
     this.sliderLineWidth,
@@ -86,9 +87,8 @@ class CustomWidgetsPaintEditor
     ReactiveCustomWidget? Function(
             PaintingEditorState editorState, Stream<void> rebuildStream)?
         bottomBar,
-    List<ReactiveCustomWidget> Function(
-            PaintingEditorState editorState, Stream<void> rebuildStream)?
-        bodyItems,
+    CustomBodyItems<PaintingEditorState>? bodyItems,
+    CustomBodyItems<PaintingEditorState>? bodyItemsRecorded,
     Widget Function(PaintingEditorState editorState, Function() tap)?
         lineWidthCloseButton,
     Widget Function(PaintingEditorState editorState, Function() tap)?
@@ -101,6 +101,7 @@ class CustomWidgetsPaintEditor
       appBar: appBar ?? this.appBar,
       bottomBar: bottomBar ?? this.bottomBar,
       bodyItems: bodyItems ?? this.bodyItems,
+      bodyItemsRecorded: bodyItemsRecorded ?? this.bodyItemsRecorded,
       lineWidthCloseButton: lineWidthCloseButton ?? this.lineWidthCloseButton,
       changeOpacityCloseButton:
           changeOpacityCloseButton ?? this.changeOpacityCloseButton,

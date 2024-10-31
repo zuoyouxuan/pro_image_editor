@@ -275,54 +275,66 @@ class BlurEditorState extends State<BlurEditor>
   Widget _buildBody() {
     return LayoutBuilder(builder: (context, constraints) {
       editorBodySize = constraints.biggest;
-      return ContentRecorder(
-        controller: screenshotCtrl,
-        child: Stack(
-          alignment: Alignment.center,
-          fit: StackFit.expand,
-          children: [
-            Hero(
-              tag: heroTag,
-              createRectTween: (begin, end) =>
-                  RectTween(begin: begin, end: end),
-              child: TransformedContentGenerator(
-                configs: configs,
-                transformConfigs:
-                    initialTransformConfigs ?? TransformConfigs.empty(),
-                child: StreamBuilder(
-                    stream: _uiBlurStream.stream,
-                    builder: (context, snapshot) {
-                      return FilteredImage(
-                        width:
-                            getMinimumSize(mainImageSize, editorBodySize).width,
-                        height: getMinimumSize(mainImageSize, editorBodySize)
-                            .height,
-                        configs: configs,
-                        image: editorImage,
-                        filters: appliedFilters,
-                        tuneAdjustments: appliedTuneAdjustments,
-                        blurFactor: blurFactor,
-                      );
-                    }),
-              ),
-            ),
-            if (blurEditorConfigs.showLayers && layers != null)
-              LayerStack(
-                transformHelper: TransformHelper(
-                  mainBodySize: getMinimumSize(mainBodySize, editorBodySize),
-                  mainImageSize: getMinimumSize(mainImageSize, editorBodySize),
-                  transformConfigs: initialTransformConfigs,
-                  editorBodySize: editorBodySize,
+      return Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand,
+        children: [
+          ContentRecorder(
+            controller: screenshotCtrl,
+            child: Stack(
+              alignment: Alignment.center,
+              fit: StackFit.expand,
+              children: [
+                Hero(
+                  tag: heroTag,
+                  createRectTween: (begin, end) =>
+                      RectTween(begin: begin, end: end),
+                  child: TransformedContentGenerator(
+                    configs: configs,
+                    transformConfigs:
+                        initialTransformConfigs ?? TransformConfigs.empty(),
+                    child: StreamBuilder(
+                        stream: _uiBlurStream.stream,
+                        builder: (context, snapshot) {
+                          return FilteredImage(
+                            width: getMinimumSize(mainImageSize, editorBodySize)
+                                .width,
+                            height:
+                                getMinimumSize(mainImageSize, editorBodySize)
+                                    .height,
+                            configs: configs,
+                            image: editorImage,
+                            filters: appliedFilters,
+                            tuneAdjustments: appliedTuneAdjustments,
+                            blurFactor: blurFactor,
+                          );
+                        }),
+                  ),
                 ),
-                configs: configs,
-                layers: layers!,
-                clipBehavior: Clip.none,
-              ),
-            if (customWidgets.blurEditor.bodyItems != null)
-              ...customWidgets.blurEditor.bodyItems!(
-                  this, rebuildController.stream),
-          ],
-        ),
+                if (blurEditorConfigs.showLayers && layers != null)
+                  LayerStack(
+                    transformHelper: TransformHelper(
+                      mainBodySize:
+                          getMinimumSize(mainBodySize, editorBodySize),
+                      mainImageSize:
+                          getMinimumSize(mainImageSize, editorBodySize),
+                      transformConfigs: initialTransformConfigs,
+                      editorBodySize: editorBodySize,
+                    ),
+                    configs: configs,
+                    layers: layers!,
+                    clipBehavior: Clip.none,
+                  ),
+                if (customWidgets.blurEditor.bodyItemsRecorded != null)
+                  ...customWidgets.blurEditor.bodyItemsRecorded!(
+                      this, rebuildController.stream),
+              ],
+            ),
+          ),
+          if (customWidgets.blurEditor.bodyItems != null)
+            ...customWidgets.blurEditor.bodyItems!(
+                this, rebuildController.stream),
+        ],
       );
     });
   }

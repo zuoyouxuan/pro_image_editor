@@ -34,6 +34,7 @@ class CustomWidgetsMainEditor {
     this.appBar,
     this.bottomBar,
     this.bodyItems,
+    this.bodyItemsRecorded,
   });
 
   /// Override the close warning dialog when we made changes.
@@ -156,25 +157,11 @@ class CustomWidgetsMainEditor {
     Key key,
   )? bottomBar;
 
-  /// Add custom widgets at a specific position inside the body.
-  ///
-  /// **Example:**
-  /// ```dart
-  /// bodyItems: (editor, rebuildStream) => [
-  ///   ReactiveCustomWidget(
-  ///     stream: rebuildStream,
-  ///     builder: (_) => Container(
-  ///       width: 100,
-  ///       height: 100,
-  ///       color: Colors.red,
-  ///     ),
-  ///   ),
-  /// ],
-  /// ```
-  final List<ReactiveCustomWidget> Function(
-    ProImageEditorState editor,
-    Stream<void> rebuildStream,
-  )? bodyItems;
+  /// {@macro customBodyItem}
+  final CustomBodyItems<ProImageEditorState>? bodyItems;
+
+  /// {@macro customBodyItemRecorded}
+  final CustomBodyItems<ProImageEditorState>? bodyItemsRecorded;
 
   /// Creates a copy of this `CustomWidgetsMainEditor` object with the given
   /// fields replaced with new values.
@@ -199,10 +186,8 @@ class CustomWidgetsMainEditor {
       Stream<void> rebuildStream,
       Key key,
     )? bottomBar,
-    List<ReactiveCustomWidget> Function(
-      ProImageEditorState editor,
-      Stream<void> rebuildStream,
-    )? bodyItems,
+    CustomBodyItems<ProImageEditorState>? bodyItems,
+    CustomBodyItems<ProImageEditorState>? bodyItemsRecorded,
   }) {
     return CustomWidgetsMainEditor(
       closeWarningDialog: closeWarningDialog ?? this.closeWarningDialog,
@@ -211,6 +196,7 @@ class CustomWidgetsMainEditor {
       appBar: appBar ?? this.appBar,
       bottomBar: bottomBar ?? this.bottomBar,
       bodyItems: bodyItems ?? this.bodyItems,
+      bodyItemsRecorded: bodyItemsRecorded ?? this.bodyItemsRecorded,
     );
   }
 }

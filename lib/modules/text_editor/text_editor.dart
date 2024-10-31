@@ -76,6 +76,9 @@ class TextEditorState extends State<TextEditor>
   /// Position of the color picker.
   double colorPosition = 0;
 
+  /// Represents the dimensions of the body.
+  Size editorBodySize = Size.infinite;
+
   late double _fontScale;
 
   Color _primaryColor = Colors.black;
@@ -502,33 +505,37 @@ class TextEditorState extends State<TextEditor>
 
   /// Builds the body of the text editor.
   Widget _buildBody() {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: done,
-      child: Stack(
-        children: [
-          if (customWidgets.textEditor.bodyItems != null)
-            ...customWidgets.textEditor.bodyItems!(
-              this,
-              _rebuildController.stream,
-            ),
-          _buildTextField(),
-          _buildColorPicker(),
-          if (textEditorConfigs.showSelectFontStyleBottomBar)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: kBottomNavigationBarHeight,
-              child: TextEditorBottomBar(
-                configs: widget.configs,
-                selectedStyle: selectedTextStyle,
-                onFontChange: setTextStyle,
+    return LayoutBuilder(builder: (_, constraints) {
+      editorBodySize = constraints.biggest;
+
+      return GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: done,
+        child: Stack(
+          children: [
+            if (customWidgets.textEditor.bodyItems != null)
+              ...customWidgets.textEditor.bodyItems!(
+                this,
+                _rebuildController.stream,
               ),
-            ),
-        ],
-      ),
-    );
+            _buildTextField(),
+            _buildColorPicker(),
+            if (textEditorConfigs.showSelectFontStyleBottomBar)
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: kBottomNavigationBarHeight,
+                child: TextEditorBottomBar(
+                  configs: widget.configs,
+                  selectedStyle: selectedTextStyle,
+                  onFontChange: setTextStyle,
+                ),
+              ),
+          ],
+        ),
+      );
+    });
   }
 
   List<IconButton> _getConfigButtons() => [
