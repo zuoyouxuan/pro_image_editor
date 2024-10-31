@@ -4,14 +4,63 @@ import 'package:flutter/widgets.dart';
 // Project imports:
 import 'package:pro_image_editor/widgets/custom_widgets/reactive_custom_widget.dart';
 
-/// A typedef for creating a remove-area
+import '../../../modules/main_editor/main_editor.dart';
+
+/// {@template removeLayerArea}
+/// A function that returns a [Widget] used as a remove area in the
+/// editor interface. It provides access to the [removeAreaKey] for
+/// positioning or targeting the remove area, the [editor] state for
+/// managing editor-related actions, and a [rebuildStream] to handle
+/// updates for interactive elements.
 ///
-/// - [key] - A [GlobalKey] to uniquely identify the button.
-/// - [rebuildStream] - A [Stream] that triggers the widget to rebuild.
+/// The [removeAreaKey] parameter is a [GlobalKey] that points to the
+/// specific area where elements should be removed or targeted. The
+/// [editor] parameter allows access to the current editor state, and
+/// the [rebuildStream] stream enables dynamic rebuilding of the widget.
 ///
-/// Returns a [ReactiveCustomWidget] that handles the removal of a button.
-typedef RemoveButton = ReactiveCustomWidget Function(
-  GlobalKey key,
+/// **Example Usage:**
+/// ```dart
+/// removeLayerArea: (removeAreaKey, editor, rebuildStream) {
+///   return Positioned(
+///     key: removeAreaKey,
+///     top: 0,
+///     left: 0,
+///     child: SafeArea(
+///       bottom: false,
+///       child: StreamBuilder(
+///         stream: rebuildStream,
+///         builder: (context, snapshot) {
+///           return Container(
+///             height: kToolbarHeight,
+///             width: kToolbarHeight,
+///             decoration: BoxDecoration(
+///               color: editor.layerInteractionManager.hoverRemoveBtn
+///                   ? editor.imageEditorTheme.layerInteraction
+///                       .removeAreaBackgroundActive
+///                   : editor.imageEditorTheme.layerInteraction
+///                       .removeAreaBackgroundInactive,
+///               borderRadius: const BorderRadius.only(
+///                 bottomRight: Radius.circular(100),
+///               ),
+///             ),
+///             padding: const EdgeInsets.only(right: 12, bottom: 7),
+///             child: Center(
+///               child: Icon(
+///                 editor.icons.removeElementZone,
+///                 size: 28,
+///               ),
+///             ),
+///           );
+///         },
+///       ),
+///     ),
+///   );
+/// },
+/// ```
+/// {@endtemplate}
+typedef RemoveLayerArea = Widget Function(
+  GlobalKey removeAreaKey,
+  ProImageEditorState editor,
   Stream<void> rebuildStream,
 );
 

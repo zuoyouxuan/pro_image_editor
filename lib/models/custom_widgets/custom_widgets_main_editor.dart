@@ -69,47 +69,8 @@ class CustomWidgetsMainEditor {
   /// ```
   final Future<bool> Function(ProImageEditorState editor)? closeWarningDialog;
 
-  /// A custom widget for removing a layer or element from the editor interface,
-  /// when hover the layer over the area.
-  ///
-  /// **Example:**
-  /// ```dart
-  /// configs: ProImageEditorConfigs(
-  ///   customWidgets: ImageEditorCustomWidgets(
-  ///     removeLayer: (key, stream) {
-  ///       return Positioned(
-  ///         key: key, // Important add the key
-  ///         top: 0,
-  ///         left: 0,
-  ///         child: SafeArea(
-  ///           bottom: false,
-  ///           child: StreamBuilder(
-  ///               stream: stream, // Important add the stream
-  ///               initialData: false,
-  ///               builder: (context, snapshot) {
-  ///                 return Container(
-  ///                   height: 56,
-  ///                   width: 56,
-  ///                   decoration: BoxDecoration(
-  ///                     color:
-  ///                         snapshot.data ? Colors.red : Colors.grey.shade800,
-  ///                     borderRadius: const BorderRadius.only(
-  ///                         bottomRight: Radius.circular(100)),
-  ///                   ),
-  ///                   padding: const EdgeInsets.only(right: 12, bottom: 7),
-  ///                   child: const Center(
-  ///                     child: Icon(Icons.delete_outline, size: 28),
-  ///                   ),
-  ///                 );
-  ///               },
-  ///            ),
-  ///         ),
-  ///       );
-  ///     },
-  ///   ),
-  /// );
-  /// ```
-  final RemoveButton? removeLayerArea;
+  /// {@macro removeLayerArea}
+  final RemoveLayerArea? removeLayerArea;
 
   /// This is helpful when you want to interact with the full body.
   final Widget Function(
@@ -171,7 +132,7 @@ class CustomWidgetsMainEditor {
   /// others unchanged.
   CustomWidgetsMainEditor copyWith({
     Future<bool> Function(ProImageEditorState editor)? closeWarningDialog,
-    RemoveButton? removeLayerArea,
+    RemoveLayerArea? removeLayerArea,
     Widget Function(
       ProImageEditorState editor,
       Stream<void> rebuildStream,

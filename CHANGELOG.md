@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.1.1
+- **FIX**(CustomWidgets): resolve issue preventing user from using custom widget `removeLayerArea`.
+
 ## 6.1.0
 - **FEAT**(Layer): Introduce the `enableInteraction` configuration in the `Layer` class to toggle interaction capabilities.
 - **FEAT**(CustomWidgets): Add `bodyItemsRecorded` to all editors which can direct generate the final image. This option enables the recording of custom body widgets, enhancing frame functionality.

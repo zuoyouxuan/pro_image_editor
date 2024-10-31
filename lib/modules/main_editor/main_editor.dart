@@ -2586,8 +2586,11 @@ class ProImageEditorState extends State<ProImageEditor>
   }
 
   Widget _buildRemoveIcon() {
-    return customWidgets.mainEditor.removeLayerArea
-            ?.call(_removeAreaKey, _controllers.removeBtnCtrl.stream) ??
+    return customWidgets.mainEditor.removeLayerArea?.call(
+          _removeAreaKey,
+          this,
+          _controllers.removeBtnCtrl.stream,
+        ) ??
         Positioned(
           key: _removeAreaKey,
           top: 0,
