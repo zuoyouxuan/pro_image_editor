@@ -23,6 +23,8 @@ class Layer {
   /// The [scale] parameter sets the scale factor of the widget (default is 1).
   /// The [flipX] parameter controls horizontal flipping (default is false).
   /// The [flipY] parameter controls vertical flipping (default is false).
+  /// The [enableInteraction] parameter controls if a user can interact with
+  /// the layer
   Layer({
     String? id,
     Offset? offset,
@@ -30,6 +32,7 @@ class Layer {
     double? scale,
     bool? flipX,
     bool? flipY,
+    bool? enableInteraction,
   }) {
     key = GlobalKey();
     // Initialize properties with provided values or defaults.
@@ -39,6 +42,7 @@ class Layer {
     this.scale = scale ?? 1;
     this.flipX = flipX ?? false;
     this.flipY = flipY ?? false;
+    this.enableInteraction = enableInteraction ?? true;
   }
 
   /// Factory constructor for creating a Layer instance from a map and a list
@@ -51,6 +55,7 @@ class Layer {
     Layer layer = Layer(
       flipX: map['flipX'] ?? false,
       flipY: map['flipY'] ?? false,
+      enableInteraction: map['enableInteraction'] ?? true,
       offset: Offset(safeParseDouble(map['x']), safeParseDouble(map['y'])),
       rotation: safeParseDouble(map['rotation']),
       scale: safeParseDouble(map['scale'], fallback: 1),
@@ -96,6 +101,9 @@ class Layer {
   /// Flags to control horizontal and vertical flipping.
   late bool flipX, flipY;
 
+  /// Flag to enable or disable the user interaction with the layer.
+  late bool enableInteraction;
+
   /// A unique identifier for the layer.
   late String id;
 
@@ -112,6 +120,7 @@ class Layer {
       'scale': scale,
       'flipX': flipX,
       'flipY': flipY,
+      'enableInteraction': enableInteraction,
       'type': 'default',
     };
   }
@@ -150,6 +159,7 @@ class TextLayerData extends Layer {
     super.id,
     super.flipX,
     super.flipY,
+    super.enableInteraction,
   });
 
   /// Factory constructor for creating a TextLayerData instance from a Layer
@@ -213,6 +223,7 @@ class TextLayerData extends Layer {
     return TextLayerData(
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
       offset: layer.offset,
       rotation: layer.rotation,
       scale: layer.scale,
@@ -328,6 +339,7 @@ class EmojiLayerData extends Layer {
     super.id,
     super.flipX,
     super.flipY,
+    super.enableInteraction,
   });
 
   /// Factory constructor for creating an EmojiLayerData instance from a Layer
@@ -338,6 +350,7 @@ class EmojiLayerData extends Layer {
     return EmojiLayerData(
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
       offset: layer.offset,
       rotation: layer.rotation,
       scale: layer.scale,
@@ -390,6 +403,7 @@ class PaintingLayerData extends Layer {
     super.id,
     super.flipX,
     super.flipY,
+    super.enableInteraction,
   });
 
   /// Factory constructor for creating a PaintingLayerData instance from a
@@ -400,6 +414,7 @@ class PaintingLayerData extends Layer {
     return PaintingLayerData(
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
       offset: layer.offset,
       rotation: layer.rotation,
       scale: layer.scale,
@@ -465,6 +480,7 @@ class StickerLayerData extends Layer {
     super.id,
     super.flipX,
     super.flipY,
+    super.enableInteraction,
   });
 
   /// Factory constructor for creating a StickerLayerData instance from a
@@ -500,6 +516,7 @@ class StickerLayerData extends Layer {
     return StickerLayerData(
       flipX: layer.flipX,
       flipY: layer.flipY,
+      enableInteraction: layer.enableInteraction,
       offset: layer.offset,
       rotation: layer.rotation,
       scale: layer.scale,
@@ -537,6 +554,7 @@ class StickerLayerData extends Layer {
     String? id,
     bool? flipX,
     bool? flipY,
+    bool? enableInteraction,
   }) {
     return StickerLayerData(
       sticker: sticker ?? this.sticker,
@@ -546,6 +564,7 @@ class StickerLayerData extends Layer {
       id: id ?? this.id,
       flipX: flipX ?? this.flipX,
       flipY: flipY ?? this.flipY,
+      enableInteraction: enableInteraction ?? this.enableInteraction,
     );
   }
 }
