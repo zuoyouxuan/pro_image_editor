@@ -326,6 +326,9 @@ class ProImageEditorState extends State<ProImageEditor>
   /// Whether a dialog is currently open.
   bool _openDialog = false;
 
+  /// Whether a context menu is currently open.
+  bool _openContextMenu = false;
+
   /// Indicates whether the `onScaleUpdate` function can be triggered to
   /// interact with the layers.
   bool blockOnScaleUpdateFunction = false;
@@ -470,7 +473,7 @@ class ProImageEditorState extends State<ProImageEditor>
       event,
       activeLayer: _activeLayer,
       onEscape: () {
-        if (!_openDialog) {
+        if (!_openDialog && !_openContextMenu) {
           if (isSubEditorOpen) {
             if (!imageEditorTheme.subEditorPage.barrierDismissible) {
               if (cropRotateEditor.currentState != null) {
@@ -2474,6 +2477,9 @@ class ProImageEditorState extends State<ProImageEditor>
                                   ..rotateScaleLayerScaleHelper =
                                       layerItem.scale;
                                 _checkInteractiveViewer();
+                              },
+                              onContextMenuToggled: (isOpen) {
+                                _openContextMenu = isOpen;
                               },
                               onScaleRotateUp: (details) {
                                 layerInteractionManager

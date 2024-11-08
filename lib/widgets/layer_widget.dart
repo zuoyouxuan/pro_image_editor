@@ -24,6 +24,7 @@ class LayerWidget extends StatefulWidget with SimpleConfigsAccess {
     required this.editorCenterY,
     required this.configs,
     required this.layerData,
+    this.onContextMenuToggled,
     this.onTapDown,
     this.onTapUp,
     this.onTap,
@@ -57,6 +58,9 @@ class LayerWidget extends StatefulWidget with SimpleConfigsAccess {
 
   /// Data for the layer.
   final Layer layerData;
+
+  /// Callback when the context menu open/close
+  final Function(bool isOpen)? onContextMenuToggled;
 
   /// Callback when a tap down event occurs.
   final Function()? onTapDown;
@@ -157,8 +161,10 @@ class _LayerWidgetState extends State<LayerWidget>
     if (_checkHitIsOutsideInCanvas()) return;
     final Offset clickPosition = details.globalPosition;
 
+    widget.onContextMenuToggled?.call(true);
+
     // Show a popup menu at the click position
-    showMenu<String>(
+    showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
         clickPosition.dx,
@@ -167,13 +173,13 @@ class _LayerWidgetState extends State<LayerWidget>
         clickPosition.dy + 1.0, // Adding a small value to avoid zero height
       ),
       items: <PopupMenuEntry<String>>[
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: 'remove',
           child: Row(
             children: [
-              Icon(Icons.delete_outline),
-              SizedBox(width: 4),
-              Text('Remove'),
+              const Icon(Icons.delete_outline),
+              const SizedBox(width: 4),
+              Text(i18n.layerInteraction.remove),
             ],
           ),
         ),
@@ -182,6 +188,7 @@ class _LayerWidgetState extends State<LayerWidget>
       if (selectedValue != null) {
         widget.onRemoveTap?.call();
       }
+      widget.onContextMenuToggled?.call(false);
     });
   }
 

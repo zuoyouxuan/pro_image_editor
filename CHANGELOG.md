@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.1.3
+- **FIX**(keyboard): resolve issue that escape key throw an error when the context menu is open. This resolves issue [#260](https://github.com/hm21/pro_image_editor/issues/260)
+
 ## 6.1.2
 - **STYLE(AppBar)**: moved close action to AppBar's leading parameter for improved layout consistency.
 - **STYLE(AppBar)**: updated IconButtons to use default 8-point all-around padding, enhancing visual balance.
