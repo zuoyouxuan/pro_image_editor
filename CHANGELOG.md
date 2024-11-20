@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.1.4
+- **FIX**(zoom): Fixed an issue where the minimum zoom level setting had no effect, ensuring proper enforcement of zoom boundaries in the viewer. This resolves issue [#260](https://github.com/hm21/pro_image_editor/issues/266)
+
 ## 6.1.3
 - **FIX**(keyboard): resolve issue that escape key throw an error when the context menu is open. This resolves issue [#260](https://github.com/hm21/pro_image_editor/issues/260)
 

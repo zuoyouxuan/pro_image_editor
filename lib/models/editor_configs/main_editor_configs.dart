@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:pro_image_editor/models/crop_rotate_editor/transform_factors.dart';
 import 'package:pro_image_editor/utils/decode_image.dart';
 
@@ -9,6 +10,7 @@ class MainEditorConfigs {
     this.editorMinScale = 1.0,
     this.editorMaxScale = 5.0,
     this.transformSetup,
+    this.boundaryMargin = EdgeInsets.zero,
   });
 
   /// {@template enableZoom}
@@ -43,6 +45,24 @@ class MainEditorConfigs {
   /// Default value is 5.0.
   final double editorMaxScale;
 
+  /// Zoom boundary
+  ///
+  /// A margin for the visible boundaries of the child.
+  ///
+  /// Any transformation that results in the viewport being able to view
+  /// outside of the boundaries will be stopped at the boundary.
+  /// The boundaries do not rotate with the rest of the scene, so they are
+  /// always aligned with the viewport.
+  ///
+  /// To produce no boundaries at all, pass infinite [EdgeInsets], such as
+  /// EdgeInsets.all(double.infinity).
+  ///
+  /// No edge can be NaN.
+  ///
+  /// Defaults to [EdgeInsets.zero], which results in boundaries that are the
+  /// exact same size and position as the [child].
+  final EdgeInsets boundaryMargin;
+
   /// Initializes the editor with pre-configured transformations,
   /// such as cropping, based on the provided setup.
   final MainEditorTransformSetup? transformSetup;
@@ -53,16 +73,19 @@ class MainEditorConfigs {
   /// The [copyWith] method allows you to create a new instance of
   /// [MainEditorConfigs] with some properties updated while keeping the
   /// others unchanged.
-  MainEditorConfigs copyWith(
-      {bool? enableZoom,
-      double? editorMinScale,
-      double? editorMaxScale,
-      MainEditorTransformSetup? transformSetup}) {
+  MainEditorConfigs copyWith({
+    bool? enableZoom,
+    double? editorMinScale,
+    double? editorMaxScale,
+    MainEditorTransformSetup? transformSetup,
+    EdgeInsets? boundaryMargin,
+  }) {
     return MainEditorConfigs(
       enableZoom: enableZoom ?? this.enableZoom,
       editorMinScale: editorMinScale ?? this.editorMinScale,
       editorMaxScale: editorMaxScale ?? this.editorMaxScale,
       transformSetup: transformSetup ?? this.transformSetup,
+      boundaryMargin: boundaryMargin ?? this.boundaryMargin,
     );
   }
 }

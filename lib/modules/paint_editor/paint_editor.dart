@@ -963,6 +963,7 @@ class PaintingEditorState extends State<PaintingEditor>
                       ExtendedInteractiveViewer(
                         key: _interactiveViewer,
                         enableZoom: _enableZoom,
+                        boundaryMargin: paintEditorConfigs.boundaryMargin,
                         minScale: paintEditorConfigs.editorMinScale,
                         maxScale: paintEditorConfigs.editorMaxScale,
                         enableInteraction: paintMode == PaintModeE.moveAndZoom,

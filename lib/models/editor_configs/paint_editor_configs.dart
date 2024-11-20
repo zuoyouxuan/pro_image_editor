@@ -1,4 +1,6 @@
 // Project imports:
+import 'package:flutter/widgets.dart';
+
 import '../../modules/paint_editor/utils/paint_editor_enum.dart';
 import 'utils/editor_safe_area.dart';
 
@@ -48,6 +50,7 @@ class PaintEditorConfigs {
     this.canChangeLineWidth = true,
     this.canChangeOpacity = true,
     this.initialFill = false,
+    this.boundaryMargin = EdgeInsets.zero,
     this.minScale = double.negativeInfinity,
     this.maxScale = double.infinity,
     this.freeStyleHighPerformanceScaling,
@@ -155,6 +158,24 @@ class PaintEditorConfigs {
   /// Default value is 5.0.
   final double editorMaxScale;
 
+  /// Zoom boundary
+  ///
+  /// A margin for the visible boundaries of the child.
+  ///
+  /// Any transformation that results in the viewport being able to view
+  /// outside of the boundaries will be stopped at the boundary.
+  /// The boundaries do not rotate with the rest of the scene, so they are
+  /// always aligned with the viewport.
+  ///
+  /// To produce no boundaries at all, pass infinite [EdgeInsets], such as
+  /// EdgeInsets.all(double.infinity).
+  ///
+  /// No edge can be NaN.
+  ///
+  /// Defaults to [EdgeInsets.zero], which results in boundaries that are the
+  /// exact same size and position as the [child].
+  final EdgeInsets boundaryMargin;
+
   /// The minimum scale factor from the layer.
   final double minScale;
 
@@ -193,6 +214,7 @@ class PaintEditorConfigs {
     double? minScale,
     double? maxScale,
     EditorSafeArea? safeArea,
+    EdgeInsets? boundaryMargin,
   }) {
     return PaintEditorConfigs(
       safeArea: safeArea ?? this.safeArea,
@@ -218,6 +240,7 @@ class PaintEditorConfigs {
       initialPaintMode: initialPaintMode ?? this.initialPaintMode,
       editorMinScale: editorMinScale ?? this.editorMinScale,
       editorMaxScale: editorMaxScale ?? this.editorMaxScale,
+      boundaryMargin: boundaryMargin ?? this.boundaryMargin,
       minScale: minScale ?? this.minScale,
       maxScale: maxScale ?? this.maxScale,
     );

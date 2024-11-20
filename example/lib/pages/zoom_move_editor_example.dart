@@ -67,9 +67,15 @@ class _ZoomMoveEditorExampleState extends State<ZoomMoveEditorExample>
         designMode: platformDesignMode,
         mainEditorConfigs: const MainEditorConfigs(
           enableZoom: true,
+          editorMinScale: 0.8,
+          editorMaxScale: 5,
+          boundaryMargin: EdgeInsets.all(100),
         ),
         paintEditorConfigs: const PaintEditorConfigs(
           enableZoom: true,
+          editorMinScale: 0.8,
+          editorMaxScale: 5,
+          boundaryMargin: EdgeInsets.all(100),
         ),
         icons: const ImageEditorIcons(
           paintingEditor: IconsPaintingEditor(

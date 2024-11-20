@@ -2117,6 +2117,7 @@ class ProImageEditorState extends State<ProImageEditor>
                 : EdgeInsets.zero,
             child: ExtendedInteractiveViewer(
               key: _interactiveViewer,
+              boundaryMargin: mainEditorConfigs.boundaryMargin,
               enableZoom: mainEditorConfigs.enableZoom,
               minScale: mainEditorConfigs.editorMinScale,
               maxScale: mainEditorConfigs.editorMaxScale,
