@@ -1,6 +1,6 @@
 /// A map representing the demo data for file import history.
 Map<String, dynamic> importHistoryDemoData = {
-  'version': '3.0.0',
+  'version': '3.0.1',
   'position': 6,
   'history': [
     {
@@ -583,5 +583,6 @@ Map<String, dynamic> importHistoryDemoData = {
       'blur': 0.0
     }
   ],
-  'imgSize': {'width': 1024.0, 'height': 1792.0}
+  'imgSize': {'width': 1024.0, 'height': 1792.0},
+  'lastRenderedImgSize': {'width': 1024.0, 'height': 1792.0}
 };
