@@ -1819,15 +1819,14 @@ class ProImageEditorState extends State<ProImageEditor>
       for (EditorStateHistory el in import.stateHistory) {
         for (Layer layer in el.layers) {
           if (import.configs.recalculateSizeAndPosition) {
-
             Size currentImageSize = sizesManager.decodedImageSize;
             Size lastDecodedImageSize = import.lastRenderedImgSize;
 
             // Calculate scale factors for non-uniform scaling
-            double scaleWidth = currentImageSize.width /
-              lastDecodedImageSize.width;
-            double scaleHeight = currentImageSize.height /
-              lastDecodedImageSize.height;
+            double scaleWidth =
+                currentImageSize.width / lastDecodedImageSize.width;
+            double scaleHeight =
+                currentImageSize.height / lastDecodedImageSize.height;
 
             if (scaleWidth == 0 || scaleWidth.isInfinite) scaleWidth = 1;
             if (scaleHeight == 0 || scaleHeight.isInfinite) scaleHeight = 1;

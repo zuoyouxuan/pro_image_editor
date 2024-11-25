@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.1.6
+- **STYLE**: format dart code 
+
 ## 6.1.5
 - **FIX**(import): Fixed an issue where imported layers didn't scale correctly on different screen sizes. This resolves issue [#272](https://github.com/hm21/pro_image_editor/issues/272)
 
