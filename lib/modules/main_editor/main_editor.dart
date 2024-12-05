@@ -791,6 +791,41 @@ class ProImageEditorState extends State<ProImageEditor>
     }
   }
 
+  /// Replace the background image with a new image and ensures all relevant
+  /// states are rebuilt to reflect the new background. This includes marking
+  /// all background screenshots as "broken" to trigger re-capture with the
+  /// new image, and rebuilding the current editor state to apply the changes.
+  ///
+  /// The method performs the following steps:
+  /// 1. Updates the editor's background image.
+  /// 2. Decodes the new image to prepare it for rendering.
+  /// 3. Marks all screenshots as "broken" so they are recaptured with the
+  /// updated background.
+  /// 4. Rebuilds the current editor state to ensure the new background is
+  /// applied.
+  Future<void> updateBackgroundImage(EditorImage image) async {
+    editorImage = image;
+    await decodeImage();
+
+    /// Mark all background captured images with the old background image as
+    /// "broken" that the editor capture them with the new image again
+    for (var item in stateManager.screenshots) {
+      item.broken = true;
+    }
+
+    /// Force to rebuild everything
+    int pos = stateManager.position;
+    EditorStateHistory oldHistory = stateManager.stateHistory[pos];
+
+    stateManager.stateHistory[pos] = EditorStateHistory(
+      layers: oldHistory.layers,
+      transformConfigs: oldHistory.transformConfigs,
+      blur: oldHistory.blur,
+      filters: [...oldHistory.filters],
+      tuneAdjustments: [...oldHistory.tuneAdjustments],
+    );
+  }
+
   /// Handle the start of a scaling operation.
   ///
   /// This method is called when a scaling operation begins and initializes the

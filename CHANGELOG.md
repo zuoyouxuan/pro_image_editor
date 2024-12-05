@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.2.0
+- **FEAT**(Main-Editor): Added `updateBackgroundImage` method to update the editor's background image.
+
 ## 6.1.6
 - **STYLE**: format dart code 
 
