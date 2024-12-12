@@ -3,6 +3,7 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pro_image_editor/extensions/color_extension.dart';
 
 // Project imports:
 import '../../utils/parser/double_parser.dart';
@@ -291,8 +292,8 @@ class TextLayerData extends Layer {
       ...super.toMap(),
       'text': text,
       'colorMode': LayerBackgroundMode.values[colorMode?.index ?? 0].name,
-      'color': color.value,
-      'background': background.value,
+      'color': color.toHex(),
+      'background': background.toHex(),
       'colorPickerPosition': colorPickerPosition ?? 0,
       'align': align.name,
       'fontScale': fontScale,

@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.1
+- **FIX**(lint): resolve lint issues after upgrading to Dart 3.27.0
+
+
 ## 6.2.0
 - **FEAT**(Main-Editor): Added `updateBackgroundImage` method to update the editor's background image.
 

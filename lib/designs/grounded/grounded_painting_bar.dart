@@ -66,7 +66,7 @@ class _GroundedPaintingBarState extends State<GroundedPaintingBar>
 
   Color get _foreGroundColor =>
       imageEditorTheme.paintingEditor.appBarForegroundColor;
-  Color get _foreGroundColorAccent => _foreGroundColor.withOpacity(0.6);
+  Color get _foreGroundColorAccent => _foreGroundColor.withValues(alpha: 0.6);
 
   @override
   Widget build(BuildContext context) {

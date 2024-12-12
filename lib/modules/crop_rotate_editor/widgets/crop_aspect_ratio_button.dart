@@ -48,7 +48,7 @@ class AspectRatioPainter extends CustomPainter {
 
     // Paint object for filling the rectangle with color and opacity
     final Paint fillPaint = Paint()
-      ..color = color.withOpacity(0.5) // Set fill color opacity
+      ..color = color.withValues(alpha: 0.5) // Set fill color opacity
       ..style = PaintingStyle.fill;
 
     // Paint object for the border

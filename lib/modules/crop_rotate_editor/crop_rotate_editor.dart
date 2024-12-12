@@ -1263,7 +1263,9 @@ class CropRotateEditorState extends State<CropRotateEditor>
   void _onScaleUpdate(ScaleUpdateDetails details) {
     if (_blockInteraction ||
         details.pointerCount > 2 ||
-        !_scaleAllowUpdateHelper) return;
+        !_scaleAllowUpdateHelper) {
+      return;
+    }
     _blockInteraction = true;
     if (details.pointerCount == 2) {
       double newZoom = (_startingPinchScale * details.scale)
@@ -1898,9 +1900,6 @@ class CropRotateEditorState extends State<CropRotateEditor>
         } else {
           _cursor = SystemMouseCursors.basic;
         }
-        return;
-      default:
-        _cursor = SystemMouseCursors.basic;
         return;
     }
 

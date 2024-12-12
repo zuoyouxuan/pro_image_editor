@@ -49,7 +49,7 @@ class GroundedMainBarState extends State<GroundedMainBar>
   late final ScrollController _bottomBarScrollCtrl;
 
   Color get _foreGroundColor => imageEditorTheme.appBarForegroundColor;
-  Color get _foreGroundColorAccent => _foreGroundColor.withOpacity(0.6);
+  Color get _foreGroundColorAccent => _foreGroundColor.withValues(alpha: 0.6);
 
   late final _bottomTextStyle = TextStyle(
     fontSize: 10.0,
