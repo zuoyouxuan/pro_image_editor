@@ -1,14 +1,18 @@
 # Changelog
 
+## 6.2.2
+- fix(version): Set minimum Flutter version to `3.27.0`. This resolves issue [#287](https://github.com/hm21/pro_image_editor/issues/287)
+
+
 ## 6.2.1
-- **FIX**(lint): resolve lint issues after upgrading to Dart 3.27.0
+- **FIX**(lint): Resolve lint issues after upgrading to Flutter `3.27.0`
 
 
 ## 6.2.0
 - **FEAT**(Main-Editor): Added `updateBackgroundImage` method to update the editor's background image.
 
 ## 6.1.6
-- **STYLE**: format dart code 
+- **STYLE**: Format dart code 
 
 ## 6.1.5
 - **FIX**(import): Fixed an issue where imported layers didn't scale correctly on different screen sizes. This resolves issue [#272](https://github.com/hm21/pro_image_editor/issues/272)
