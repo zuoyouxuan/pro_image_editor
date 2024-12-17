@@ -212,8 +212,8 @@ class CropCornerPainter extends CustomPainter {
     canvas.drawPath(
       path,
       Paint()
-        ..color =
-            interpolatedColor.withOpacity((opacity + fadeInFactor).clamp(0, 1))
+        ..color = interpolatedColor.withValues(
+            alpha: (opacity + fadeInFactor).clamp(0, 1))
         ..style = PaintingStyle.fill,
     );
   }
@@ -255,7 +255,7 @@ class CropCornerPainter extends CustomPainter {
         path,
         Paint()
           ..color = imageEditorTheme.cropRotateEditor.cropCornerColor
-              .withOpacity(fadeInOpacity)
+              .withValues(alpha: fadeInOpacity)
           ..style = PaintingStyle.fill,
       );
     } else {
@@ -316,7 +316,7 @@ class CropCornerPainter extends CustomPainter {
         path,
         Paint()
           ..color = imageEditorTheme.cropRotateEditor.cropCornerColor
-              .withOpacity(fadeInOpacity)
+              .withValues(alpha: fadeInOpacity)
           ..strokeWidth = width
           ..strokeCap = StrokeCap.round
           ..style = PaintingStyle.stroke,
@@ -369,7 +369,7 @@ class CropCornerPainter extends CustomPainter {
 
     final cornerPaint = Paint()
       ..color = imageEditorTheme.cropRotateEditor.helperLineColor
-          .withOpacity(fadeInOpacity * interactionOpacity)
+          .withValues(alpha: fadeInOpacity * interactionOpacity)
       ..style = PaintingStyle.fill;
     canvas.drawPath(path, cornerPaint);
   }

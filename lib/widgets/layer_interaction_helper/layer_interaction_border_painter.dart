@@ -54,7 +54,6 @@ class LayerInteractionBorderPainter extends CustomPainter {
       case LayerInteractionBorderStyle.dotted:
         _drawDottedBorder(canvas, size);
         break;
-      default:
     }
   }
 

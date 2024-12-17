@@ -4,6 +4,7 @@
 import 'dart:ui';
 
 // Project imports:
+import 'package:pro_image_editor/extensions/color_extension.dart';
 import 'package:pro_image_editor/utils/parser/double_parser.dart';
 
 import '../../modules/paint_editor/utils/paint_editor_enum.dart';
@@ -132,7 +133,7 @@ class PaintedModel {
     return {
       'mode': mode.name,
       'offsets': offsetMaps,
-      'color': color.value,
+      'color': color.toHex(),
       'strokeWidth': strokeWidth,
       'opacity': opacity,
       'fill': fill,

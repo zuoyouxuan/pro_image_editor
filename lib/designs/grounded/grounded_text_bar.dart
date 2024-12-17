@@ -49,7 +49,7 @@ class _GroundedTextBarState extends State<GroundedTextBar>
 
   Color get _foreGroundColor =>
       imageEditorTheme.textEditor.appBarForegroundColor;
-  Color get _foreGroundColorAccent => _foreGroundColor.withOpacity(0.6);
+  Color get _foreGroundColorAccent => _foreGroundColor.withValues(alpha: 0.6);
 
   @override
   void initState() {

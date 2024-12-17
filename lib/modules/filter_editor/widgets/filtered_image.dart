@@ -74,7 +74,7 @@ class FilteredImage extends StatelessWidget {
                 width: width,
                 height: height,
                 alignment: Alignment.center,
-                color: Colors.white.withOpacity(0.0),
+                color: Colors.white.withValues(alpha: 0.0),
               ),
             ),
           ),

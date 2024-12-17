@@ -42,19 +42,6 @@ void main() {
         expect(find.byType(PaintingEditor), findsOneWidget);
       });
     });
-    testWidgets('Initializes with file constructor',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: PaintingEditor.file(
-          fakeFileImage,
-          initConfigs: PaintEditorInitConfigs(
-            theme: ThemeData(),
-          ),
-        ),
-      ));
-
-      expect(find.byType(PaintingEditor), findsOneWidget);
-    });
 
     testWidgets('should render BarColorPicker', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(

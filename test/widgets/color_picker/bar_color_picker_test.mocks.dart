@@ -304,48 +304,6 @@ class MockBarColorPicker extends _i1.Mock implements _i6.BarColorPicker {
       ) as String);
 
   @override
-  String toStringDeep({
-    String? prefixLineOne = r'',
-    String? prefixOtherLines,
-    _i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.debug,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #toStringDeep,
-          [],
-          {
-            #prefixLineOne: prefixLineOne,
-            #prefixOtherLines: prefixOtherLines,
-            #minLevel: minLevel,
-          },
-        ),
-        returnValue: _i8.dummyValue<String>(
-          this,
-          Invocation.method(
-            #toStringDeep,
-            [],
-            {
-              #prefixLineOne: prefixLineOne,
-              #prefixOtherLines: prefixOtherLines,
-              #minLevel: minLevel,
-            },
-          ),
-        ),
-        returnValueForMissingStub: _i8.dummyValue<String>(
-          this,
-          Invocation.method(
-            #toStringDeep,
-            [],
-            {
-              #prefixLineOne: prefixLineOne,
-              #prefixOtherLines: prefixOtherLines,
-              #minLevel: minLevel,
-            },
-          ),
-        ),
-      ) as String);
-
-  @override
   _i4.DiagnosticsNode toDiagnosticsNode({
     String? name,
     _i5.DiagnosticsTreeStyle? style,

@@ -4,6 +4,7 @@ import 'dart:math';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:pro_image_editor/extensions/color_extension.dart';
 // Project imports:
 import 'package:pro_image_editor/mixins/converted_callbacks.dart';
 import 'package:pro_image_editor/mixins/converted_configs.dart';
@@ -90,7 +91,7 @@ class TextEditorState extends State<TextEditor>
   set primaryColor(Color color) {
     setState(() {
       _primaryColor = color;
-      textEditorCallbacks?.handleColorChanged(color.value);
+      textEditorCallbacks?.handleColorChanged(color.toHex());
     });
   }
 
@@ -172,7 +173,12 @@ class TextEditorState extends State<TextEditor>
   Color getContrastColor(Color color) {
     int d = color.computeLuminance() > 0.5 ? 0 : 255;
 
-    return Color.fromARGB(color.alpha, d, d, d);
+    return Color.fromRGBO(
+      d,
+      d,
+      d,
+      color.a,
+    );
   }
 
   /// Gets the text color based on the selected color mode.
@@ -198,7 +204,7 @@ class TextEditorState extends State<TextEditor>
       case LayerBackgroundMode.background:
         return primaryColor;
       default:
-        return secondaryColor.withOpacity(0.5);
+        return secondaryColor.withValues(alpha: 0.5);
     }
   }
 
