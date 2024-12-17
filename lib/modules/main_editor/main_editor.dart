@@ -1995,7 +1995,7 @@ class ProImageEditorState extends State<ProImageEditor>
           mainEditorCallbacks?.onPopInvoked?.call(didPop, result);
         },
         child: ScreenResizeDetector(
-          ignoreSafeArea: true,
+          ignoreSafeArea: false,
           onResizeUpdate: (event) {
             sizesManager
               ..recalculateLayerPosition(

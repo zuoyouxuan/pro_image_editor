@@ -2113,6 +2113,7 @@ class CropRotateEditorState extends State<CropRotateEditor>
   Widget _buildBody() {
     return SafeArea(
       child: ScreenResizeDetector(
+        ignoreSafeArea: false,
         onResizeUpdate: (event) {
           if (editorBodySize != event.newContentSize) {
             editorBodySize = event.newContentSize;
