@@ -1,12 +1,13 @@
 # Changelog
 
+## 6.2.3
+- **FIX**(layer): Resolve issue that layer reposition correctly after screen rotation. This resolves issue [#283](https://github.com/hm21/pro_image_editor/issues/283)
+
 ## 6.2.2
 - fix(version): Set minimum Flutter version to `3.27.0`. This resolves issue [#287](https://github.com/hm21/pro_image_editor/issues/287)
 
-
 ## 6.2.1
 - **FIX**(lint): Resolve lint issues after upgrading to Flutter `3.27.0`
-
 
 ## 6.2.0
 - **FEAT**(Main-Editor): Added `updateBackgroundImage` method to update the editor's background image.
